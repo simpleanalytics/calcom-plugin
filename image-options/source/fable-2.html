@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Simple Analytics listing image, option 2</title>
+<style>
+@font-face { font-family: "Space Grotesk"; font-weight: 300; src: url("assets/fonts/light.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 400; src: url("assets/fonts/regular.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("assets/fonts/medium.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 600; src: url("assets/fonts/semi-bold.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/bold.woff2") format("woff2"); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 1600px;
+  height: 1280px;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  color: #cedfe1;
+  background:
+    radial-gradient(900px 700px at 86% 72%, rgba(46, 198, 223, 0.13), rgba(46, 198, 223, 0) 70%),
+    linear-gradient(180deg, #243134 0%, #1f2a2c 46%, #1a2325 100%);
+}
+
+/* Reads as a deliberate frame on the app's dark-gray panel. */
+.frame {
+  position: absolute;
+  inset: 0;
+  border: 5px solid #33474a;
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.motif {
+  position: absolute;
+  left: 1180px;
+  top: -20px;
+  width: 336px;
+  height: 342px;
+  fill: #2b3b3e;
+}
+
+/* ---------- Headline ---------- */
+h1 {
+  position: absolute;
+  left: 84px;
+  top: 74px;
+  font-weight: 700;
+  font-size: 122px;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: #f3fafb;
+  white-space: nowrap;
+}
+h1 em { font-style: normal; color: #2ec6df; }
+
+.sub {
+  position: absolute;
+  left: 88px;
+  top: 344px;
+  font-weight: 400;
+  font-size: 47px;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: #b4cbcf;
+  white-space: nowrap;
+}
+
+/* ---------- Booking card (left) ---------- */
+.booking {
+  position: absolute;
+  left: 84px;
+  top: 462px;
+  width: 560px;
+  height: 738px;
+  padding: 44px;
+  border-radius: 30px;
+  background: #fcfbf9;
+  color: #1f2728;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+
+.booking .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.booking .title b {
+  font-weight: 600;
+  font-size: 48px;
+  letter-spacing: -0.02em;
+}
+.booking .title span {
+  font-weight: 500;
+  font-size: 34px;
+  color: #425659;
+  background: #e9f0f0;
+  border-radius: 999px;
+  padding: 8px 22px 10px;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  height: 52px;
+}
+.month b {
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: -0.01em;
+  color: #425659;
+}
+.month .nav { display: flex; gap: 12px; }
+.month .nav i {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2.5px solid #d0e1e3;
+  position: relative;
+}
+.month .nav i::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  width: 12px;
+  height: 12px;
+  border-right: 3.5px solid #697d80;
+  border-bottom: 3.5px solid #697d80;
+}
+.month .nav i:first-child::after { left: 18px; transform: rotate(135deg); }
+.month .nav i:last-child::after { left: 13px; transform: rotate(-45deg); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  column-gap: 8px;
+  row-gap: 8px;
+  margin-top: 18px;
+}
+.grid span {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 32px;
+  border-radius: 14px;
+  color: #a4bdc0;
+}
+.grid .wd {
+  height: 40px;
+  font-size: 27px;
+  font-weight: 500;
+  color: #8da3a6;
+}
+.grid .open { background: #e9f0f0; color: #2a373a; }
+.grid .picked {
+  background: #1f2728;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(31, 39, 40, 0.35);
+}
+
+.times {
+  display: flex;
+  gap: 16px;
+  margin-top: 26px;
+}
+.times span {
+  flex: 1;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: -0.01em;
+  color: #425659;
+  border: 3px solid #d0e1e3;
+}
+.times .picked {
+  background: #1f2728;
+  border-color: #1f2728;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Confirmation toast: sticks out of the card, the wire starts here. */
+.toast {
+  position: absolute;
+  left: 128px;
+  top: 1046px;
+  width: 592px;
+  height: 112px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 26px 0 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 2.5px solid #dfe9ea;
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.42), 0 4px 12px rgba(0, 0, 0, 0.18);
+  color: #1f2728;
+  font-weight: 600;
+  font-size: 47px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.toast svg { flex: none; width: 66px; height: 66px; }
+
+/* ---------- Wire ---------- */
+.wire {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1600px;
+  height: 1280px;
+  pointer-events: none;
+}
+
+/* ---------- Simple Analytics panel (right) ---------- */
+.panel {
+  position: absolute;
+  left: 796px;
+  top: 462px;
+  width: 720px;
+  height: 738px;
+  padding: 44px;
+  border-radius: 30px;
+  background: #2a373a;
+  border: 2.5px solid #3b4e51;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  height: 76px;
+}
+.brand .icon {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border-radius: 19px;
+  background: #ff4f64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand .icon svg { width: 42px; height: 42px; }
+.brand b {
+  font-weight: 500;
+  font-size: 49px;
+  letter-spacing: -0.02em;
+  color: #f3fafb;
+  white-space: nowrap;
+}
+
+.tabs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 26px;
+  height: 72px;
+  border-bottom: 2.5px solid #3b4e51;
+}
+.tabs .tab {
+  font-weight: 500;
+  font-size: 44px;
+  color: #f3fafb;
+  padding: 0 4px 14px;
+  border-bottom: 7px solid #ff4f64;
+  margin-bottom: -4.5px;
+}
+.tabs .range {
+  font-weight: 400;
+  font-size: 38px;
+  color: #7f979b;
+  padding-bottom: 18px;
+}
+
+.rows { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+
+.row {
+  position: relative;
+  height: 136px;
+  padding: 24px 28px 0 42px;
+  border-radius: 20px;
+  background: #222d2f;
+  border: 2.5px solid transparent;
+}
+.row .line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  height: 60px;
+}
+.row .name {
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: -0.015em;
+  color: #bbd2d5;
+  white-space: nowrap;
+}
+.row .count {
+  font-weight: 700;
+  font-size: 52px;
+  letter-spacing: -0.02em;
+  color: #cedfe1;
+}
+.row .track {
+  margin-top: 16px;
+  height: 11px;
+  border-radius: 6px;
+  background: rgba(187, 210, 213, 0.10);
+  overflow: hidden;
+}
+.row .track i {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: #198c9f;
+}
+
+.row.live {
+  background: rgba(46, 198, 223, 0.14);
+  border-color: #2ec6df;
+  box-shadow: 0 0 0 9px rgba(46, 198, 223, 0.10), 0 0 60px rgba(46, 198, 223, 0.22);
+}
+.row.live .name { color: #f3fafb; }
+.row.live .count { color: #ffffff; }
+.row.live .track { background: rgba(46, 198, 223, 0.18); }
+.row.live .track i { background: #2ec6df; }
+
+.plus {
+  position: absolute;
+  top: -34px;
+  right: 22px;
+  height: 62px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #2ec6df;
+  color: #0f2428;
+  font-weight: 700;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+</style>
+</head>
+<body>
+
+<svg class="motif" viewBox="0 0 336 342" aria-hidden="true">
+  <rect x="0" y="184" width="76" height="158" rx="6"/>
+  <rect x="130" y="90" width="76" height="252" rx="6"/>
+  <rect x="260" y="0" width="76" height="342" rx="6"/>
+</svg>
+
+<h1>Every booking<br>becomes <em>an event.</em></h1>
+<p class="sub">Privacy-first analytics. No cookies, no consent banner.</p>
+
+<!-- Generic booking page -->
+<div class="booking">
+  <div class="title"><b>Intro call</b><span>30 min</span></div>
+
+  <div class="month"><b>November</b><div class="nav"><i></i><i></i></div></div>
+
+  <div class="grid">
+    <span class="wd">M</span><span class="wd">T</span><span class="wd">W</span><span class="wd">T</span><span class="wd">F</span><span class="wd">S</span><span class="wd">S</span>
+
+    <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+    <span>16</span><span class="open">17</span><span class="open picked">18</span><span class="open">19</span><span class="open">20</span><span>21</span><span>22</span>
+    <span class="open">23</span><span class="open">24</span><span class="open">25</span><span class="open">26</span><span class="open">27</span><span>28</span><span>29</span>
+  </div>
+
+  <div class="times"><span>10:00</span><span class="picked">10:30</span></div>
+</div>
+
+<div class="toast">
+  <svg viewBox="0 0 66 66" aria-hidden="true">
+    <circle cx="33" cy="33" r="33" fill="#12a150"/>
+    <path d="M19 34.5 L28.5 44 L47 24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Booking confirmed
+</div>
+
+<!-- Simple Analytics events -->
+<div class="panel">
+  <div class="brand">
+    <div class="icon">
+      <svg viewBox="0 0 1000 1000" aria-hidden="true"><path fill="#ffffff" d="M54 538h154v462H54zm369-276h154v738H423zM792 0h154v1000H792z"/></svg>
+    </div>
+    <b>Simple Analytics</b>
+  </div>
+
+  <div class="tabs"><span class="tab">Events</span><span class="range">last 30 days</span></div>
+
+  <div class="rows">
+    <div class="row live">
+      <span class="plus">+1</span>
+      <div class="line"><span class="name">booking_completed</span><span class="count">318</span></div>
+      <div class="track"><i style="width:100%"></i></div>
+    </div>
+    <div class="row">
+      <div class="line"><span class="name">booking_rescheduled</span><span class="count">41</span></div>
+      <div class="track"><i style="width:12.9%"></i></div>
+    </div>
+    <div class="row">
+      <div class="line"><span class="name">booking_cancelled</span><span class="count">23</span></div>
+      <div class="track"><i style="width:7.2%"></i></div>
+    </div>
+  </div>
+</div>
+
+<!-- Wire from the confirmation to the event that just arrived -->
+<svg class="wire" viewBox="0 0 1600 1280" aria-hidden="true">
+  <path d="M 745 1101 Q 758 1097 758 1077 V 798 Q 758 776 780 776 H 818"
+        fill="none" stroke="#2ec6df" stroke-width="11" stroke-linecap="round" stroke-dasharray="0.1 25"/>
+  <circle cx="720" cy="1102" r="13" fill="#2ec6df" stroke="#ffffff" stroke-width="5"/>
+  <circle cx="758" cy="940" r="36" fill="rgba(46,198,223,0.20)"/>
+  <circle cx="758" cy="940" r="19" fill="#2ec6df"/>
+  <circle cx="842" cy="776" r="26" fill="rgba(46,198,223,0.28)"/>
+  <circle cx="842" cy="776" r="15" fill="#2ec6df" stroke="#f3fafb" stroke-width="5"/>
+</svg>
+
+<div class="frame"></div>
+</body>
+</html>

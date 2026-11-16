@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Simple Analytics listing image, option 3: brand poster</title>
+<style>
+  @font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("assets/fonts/medium.woff2") format("woff2"); }
+  @font-face { font-family: "Space Grotesk"; font-weight: 600; src: url("assets/fonts/semi-bold.woff2") format("woff2"); }
+  @font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/bold.woff2") format("woff2"); }
+
+  /*
+    Grid, in px on the 1600 x 1280 canvas:
+    - outer margin 104 left and right, 100 bottom; the headline's cap height starts at 108
+    - headline baselines at 203, 339 and 475
+    - the logo stands on y = 1180, the wordmark's baseline, at 0.841 of its 1000-unit artwork
+    - tallest bar tops out at 339 (headline line 2 baseline); the other two bar tops (559, 791)
+      set the tops of the first and third proof pills
+  */
+  :root {
+    --red: #ff4f64;       /* brand red, the field */
+    --red-deep: #de3243;  /* app-icon red: column tracks, bar labels */
+    --ink: #1f2728;
+    --white: #ffffff;
+    --margin: 104px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 1600px;
+    height: 1280px;
+    overflow: hidden;
+    background: var(--red);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  .poster { position: relative; width: 1600px; height: 1280px; overflow: hidden; }
+
+  .bars { position: absolute; inset: 0; width: 1600px; height: 1280px; }
+
+  .headline {
+    position: absolute;
+    left: calc(var(--margin) - 9px); /* hang the P's side bearing so its stem sits on the margin */
+    top: 88px;
+    font-weight: 700;
+    font-size: 136px;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+  }
+  .headline span { display: block; }
+
+  .proof {
+    position: absolute; left: var(--margin); top: 559px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+    list-style: none;
+  }
+  .proof li {
+    display: flex; align-items: center; gap: 20px;
+    height: 92px; padding: 0 42px 0 21px;
+    border-radius: 46px;
+    background: var(--ink);
+    font-weight: 600; font-size: 48px; letter-spacing: -0.012em; white-space: nowrap;
+  }
+  .proof svg { width: 50px; height: 50px; flex: none; }
+
+  /* Icon and wordmark share the y = 1180 baseline with the large bars. */
+  .signature {
+    position: absolute; left: calc(var(--margin) - 3px); bottom: 86px;
+    display: flex; align-items: baseline; gap: 20px;
+    font-weight: 500; font-size: 48px; letter-spacing: -0.015em; white-space: nowrap;
+  }
+  .signature svg { width: 50px; height: 50px; flex: none; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <svg class="bars" viewBox="0 0 1600 1280" aria-hidden="true">
+    <!-- Column tracks: the faint lanes each bar rises in. -->
+    <g fill="#de3243" opacity="0.2">
+      <rect x="744"  y="0" width="130" height="1180"/>
+      <rect x="1055" y="0" width="130" height="1180"/>
+      <rect x="1366" y="0" width="130" height="1180"/>
+    </g>
+    <!-- The logo's three bars in their true proportions (462 : 738 : 1000), one per booking event. -->
+    <g fill="#ffffff">
+      <rect x="744"  y="791.5" width="130" height="388.5"/>
+      <rect x="1055" y="559.3" width="130" height="620.7"/>
+      <rect x="1366" y="339"   width="130" height="841"/>
+    </g>
+    <g font-family="Space Grotesk" font-weight="600" font-size="48" letter-spacing="-0.5" fill="#de3243">
+      <text transform="translate(826 1140) rotate(-90)">cancelled</text>
+      <text transform="translate(1137 1140) rotate(-90)">rescheduled</text>
+      <text transform="translate(1448 1140) rotate(-90)">completed</text>
+    </g>
+  </svg>
+
+  <h1 class="headline"><span>Privacy-first</span><span>analytics for your</span><span>booking pages.</span></h1>
+
+  <ul class="proof">
+    <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#ff4f64"/><path d="M13.5 24.8l7.2 7.2 14-15" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>No cookies or consent banners</li>
+    <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#ff4f64"/><path d="M13.5 24.8l7.2 7.2 14-15" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Booking events</li>
+    <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#ff4f64"/><path d="M13.5 24.8l7.2 7.2 14-15" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Page views</li>
+  </ul>
+
+  <div class="signature">
+    <svg viewBox="0 0 1000 1000"><path fill="#fff" d="M54 538h154v462H54zm369-276h154v738H423zM792 0h154v1000H792z"/></svg>
+    Simple Analytics
+  </div>
+
+</div>
+</body>
+</html>
